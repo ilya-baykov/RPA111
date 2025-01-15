@@ -2,10 +2,14 @@ import os
 from typing import Optional
 
 import requests
+import urllib3
 from requests import Response
 from requests.auth import HTTPBasicAuth
 
 from config.logger import logger
+
+# Отключаем предупреждения
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 
 class DataDownloader:
@@ -21,7 +25,7 @@ class DataDownloader:
                 url=url,
                 auth=DataDownloader._AUTH,
                 headers={"Accept-Encoding": "gzip"},
-                params=params,
+                params=_params,
                 verify=False
             )
             response.raise_for_status()  # Проверяем статус ответа
@@ -38,15 +42,6 @@ class DataDownloader:
                                                 logger_message="Запрос на получение данных")
 
         if response and response.content:
-
             with open(_output_file, 'wb') as f:  # Сохраняем ответ в файл
                 f.write(response.content)
             logger.info("Файл успешно сохранен.")
-        else:
-            logger.error(f"Ошибка: {response.status_code} - {response.text if response else 'Нет ответа'}")
-
-
-params = {'table': 'cons_dm.wfm_ppr_outsherpa'}
-output_file = 'cons_dm.wfm_ppr_outsherpa.json.gzip'
-
-DataDownloader.download_data(_params=params, _output_file='cons_dm.wfm_ppr_outsherpa.json.gzip')
