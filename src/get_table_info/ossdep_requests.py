@@ -37,8 +37,14 @@ class DataDownloader:
             return None
 
     @staticmethod
-    def download_data(params, output_file_name, save_path=SAVE_PATH):
-        """Сохранение данных из витрины в виде таблицы"""
+    def download_data(params, output_file_name, save_path=SAVE_PATH) -> Optional[str]:
+        """
+        Сохранение данных из витрины в виде таблицы
+        :param params: Параметры запроса к витрине
+        :param output_file_name: Имя файла после загрузки
+        :param save_path: Путь для сохранения файла с данными
+        :return: При успешной загрузке данных возвращается полный путь до файла
+        """
         response = DataDownloader._get_response(url=DataDownloader.BASE_URL, _params=params,
                                                 logger_message="Запрос на получение данных")
 
@@ -47,3 +53,4 @@ class DataDownloader:
             with open(full_path_file, 'wb') as f:  # Сохраняем ответ в файл
                 f.write(response.content)
             logger.info(f"Файл {full_path_file} успешно сохранен.")
+            return str(full_path_file)
