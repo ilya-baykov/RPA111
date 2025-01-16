@@ -1,14 +1,16 @@
+import config.env_loader
 import pandas as pd
 
-from src.get_table_info.ossdep_requests import DataDownloader
 from src.get_table_info.dataframe_reader import DataFrameReader
+from src.showcase.showcase import showcase
 
 
 def main() -> None:
-    file_path = DataDownloader.download_data(params={'table': 'cons_dm.wfm_ppr_outsherpa'},
-                                             output_file_name='showcase.txt')
-    data_frame: pd.DataFrame = DataFrameReader(file_path=file_path).get_file_dataframe()
-    print(data_frame)
+    # Загружаем данные из витрины в текстовый файл
+    showcase_file_path = showcase.download_table_dataframe(output_file_name='showcase.txt')
+
+    # Считываем текстовый файл с данными из витрины и формируем датафрейм
+    dataframe: pd.DataFrame = DataFrameReader(file_path=showcase_file_path).get_file_dataframe()
 
 
 if __name__ == '__main__':
