@@ -1,9 +1,11 @@
 from typing import Optional, Any
 
 import requests
-from requests import Response
+import urllib3
 
 from config.logger import logger
+
+urllib3.disable_warnings()
 
 
 class GetRequestManager:
