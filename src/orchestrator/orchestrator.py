@@ -8,16 +8,16 @@ from src.orchestrator.dataclasses_collection import Task
 
 
 class Orchestrator:
-    """Класс для работы с Orchestrator Api """
+    """РљР»Р°СЃСЃ РґР»СЏ СЂР°Р±РѕС‚С‹ СЃ Orchestrator Api """
 
     @staticmethod
     def create_task():
-        """Метод для создания задач в очереди"""
+        """РњРµС‚РѕРґ РґР»СЏ СЃРѕР·РґР°РЅРёСЏ Р·Р°РґР°С‡ РІ РѕС‡РµСЂРµРґРё"""
         ...
 
 
 class TaskOrchestrator:
-    """Класс для работы с задачами в оркестраторе"""
+    """РљР»Р°СЃСЃ РґР»СЏ СЂР°Р±РѕС‚С‹ СЃ Р·Р°РґР°С‡Р°РјРё РІ РѕСЂРєРµСЃС‚СЂР°С‚РѕСЂРµ"""
     BASE_URL = CREATE_TASK_URL
     HEADERS = {
         'Content-type': 'application/json',
@@ -29,15 +29,15 @@ class TaskOrchestrator:
                description: Optional[str], comment: Optional[str], deadline: Optional[str],
                retries: Optional[int], tags: Optional[str], parameters: Optional[dict]):
         """
-        Метод для создания задачи
-        :param name: Имя задачи
-        :param queue_guid: guid очереди, в которую будет добавляться задача
-        :param description: описание
-        :param comment: комментарий
-        :param deadline: дедлайн для создания задачи
-        :param retries: количество попыток
-        :param tags: Теги
-        :param parameters: Параметры
+        РњРµС‚РѕРґ РґР»СЏ СЃРѕР·РґР°РЅРёСЏ Р·Р°РґР°С‡Рё
+        :param name: РРјСЏ Р·Р°РґР°С‡Рё
+        :param queue_guid: guid РѕС‡РµСЂРµРґРё, РІ РєРѕС‚РѕСЂСѓСЋ Р±СѓРґРµС‚ РґРѕР±Р°РІР»СЏС‚СЊСЃСЏ Р·Р°РґР°С‡Р°
+        :param description: РѕРїРёСЃР°РЅРёРµ
+        :param comment: РєРѕРјРјРµРЅС‚Р°СЂРёР№
+        :param deadline: РґРµРґР»Р°Р№РЅ РґР»СЏ СЃРѕР·РґР°РЅРёСЏ Р·Р°РґР°С‡Рё
+        :param retries: РєРѕР»РёС‡РµСЃС‚РІРѕ РїРѕРїС‹С‚РѕРє
+        :param tags: РўРµРіРё
+        :param parameters: РџР°СЂР°РјРµС‚СЂС‹
         :return:
         """
 
@@ -45,5 +45,5 @@ class TaskOrchestrator:
             name=name, queue_guid=queue_guid, parameters=parameters,
             description=description, comment=comment, deadline=deadline, retries=retries, tags=tags)
 
-        # Сериализация параметров задачи в JSON
+        # РЎРµСЂРёР°Р»РёР·Р°С†РёСЏ РїР°СЂР°РјРµС‚СЂРѕРІ Р·Р°РґР°С‡Рё РІ JSON
         data = json.dumps(asdict(task))
