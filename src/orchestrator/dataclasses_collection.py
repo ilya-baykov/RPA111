@@ -12,3 +12,16 @@ class Task:
     retries: Optional[int] = None  # Количество попыток для создаваемой задачи
     tags: Optional[list[str]] = None  # Теги для создаваемой задачи, разделенные точкой с запятой
     parameters: Optional[dict] = None  # Параметры в формате JSON
+
+    @property
+    def get_dict(self):
+        return {
+            "Name": self.name,
+            "QueueGuid": self.queue_guid,
+            "Description": self.description,
+            "Comment": self.comment,
+            "Deadline": self.deadline,
+            "Retries": self.retries,
+            "Tags": self.tags,
+            "Parameters": self.parameters,
+        }

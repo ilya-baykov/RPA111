@@ -2,6 +2,7 @@ from typing import Optional, Any, Callable
 
 import requests
 import urllib3
+from requests import Response
 
 from config.logger import logger
 
@@ -21,7 +22,7 @@ class RequestManager:
         """Отправление HTTP-запроса"""
 
         try:
-            response = method(url=url, auth=auth, headers=headers, data=data, params=params, verify=verify)
+            response: Response = method(url=url, auth=auth, headers=headers, data=data, params=params, verify=verify)
             response.raise_for_status()  # Проверяем статус ответа
             logger.debug(f"{logger_message}. Статус - {response.status_code}")
             return response
@@ -46,7 +47,7 @@ class RequestManager:
     def post_response(url: str, logger_message: str,
                       auth: Any = None,
                       headers: Optional[dict[str, str]] = None,
-                      data: Optional[dict[str, Any]] = None,
+                      data: Optional[dict[str, Any] | str] = None,
                       verify: bool = False) -> Optional[requests.Response]:
 
         """Отправление POST-запроса к витрине"""
