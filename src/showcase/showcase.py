@@ -5,7 +5,7 @@ from requests.auth import HTTPBasicAuth
 from config.logger import logger
 from config.constants.paths import SAVE_PATH
 from config.constants.urls import SHOWCASE_DOWNLOAD_URL
-from src.request_manager import GetRequestManager
+from src.request_manager import RequestManager
 
 
 class ShowCase:
@@ -30,9 +30,9 @@ class ShowCase:
         """
 
         params = {'table': self.table_name}
-        response = GetRequestManager.get_response(url=SHOWCASE_DOWNLOAD_URL, params=params, auth=self._AUTH,
-                                                  logger_message=f"Запрос на загрузку данных"
-                                                                 f" из витрины {self.table_name}")
+        response = RequestManager.get_response(url=SHOWCASE_DOWNLOAD_URL, params=params, auth=self._AUTH,
+                                               logger_message=f"Запрос на загрузку данных"
+                                                              f" из витрины {self.table_name}")
 
         if response and response.content:
             full_path_file = os.path.join(save_path, output_file_name)  # Полный путь к файлу
