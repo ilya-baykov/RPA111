@@ -23,4 +23,4 @@ class Settings(BaseSettings):
 
 
 Settings.configure(DB_ENV_PATH)
-db_candidates_settings = Settings()
+db_report_settings = Settings()

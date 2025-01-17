@@ -1,9 +1,8 @@
 from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker, create_async_engine
 from sqlalchemy.orm import DeclarativeBase
 
-from database.settings import db_candidates_settings
-
 from config.logger import logger
+from database.settings import db_report_settings
 
 
 class BaseCandidatesDb(DeclarativeBase):
@@ -41,4 +40,4 @@ class DataBase:
         logger.info(f"Загружены таблицы из схемы: {schema}")
 
 
-db_candidates = DataBase(db_candidates_settings)
+db_report = DataBase(db_report_settings)

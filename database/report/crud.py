@@ -1,9 +1,9 @@
 from database.base_crud import BaseCRUD
-from database.report.model import Candidate
-from database.core import db_candidates
+from database.report.model import Report
+from database.core import db_report
 
 
-class CandidateCRUD(BaseCRUD):
-    model = Candidate
-    db = db_candidates
-    schema = 'communication_candidates'
+class ReportCRUD(BaseCRUD):
+    model = Report
+    db = db_report
+    schema = 'public'

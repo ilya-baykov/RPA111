@@ -6,7 +6,7 @@ from database.report.json_custom_type import JSONEncodedDict
 from database.core import BaseCandidatesDb
 
 
-class Candidate(BaseCandidatesDb):
+class Report(BaseCandidatesDb):
     __tablename__ = 'report'
     __table_args__ = {'schema': 'public'}  # Укажите схему
 
